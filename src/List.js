@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Search from './Search';
+import { useEffect } from "react";
+import Search from "./Search";
+import Footer from "./Footer";
+
 
 const List = ({ list, setList, search, setSearch, handleSearch }) => {
-    // Use useEffect to retrieve data from localStorage on component mount
     useEffect(() => {
         const storedList = JSON.parse(localStorage.getItem('list')) || [];
         if (storedList.length > 0) {
@@ -22,14 +23,13 @@ const List = ({ list, setList, search, setSearch, handleSearch }) => {
 
                 <ul>
                     {list.map((item) => (
-                        <li
-                            key={item.id}
-                            className='list'
-                        >
+                        <li key={item.id} className='list'>
                             {list.length === 1 ? '' : <p>{item.id}. {item.name} - {item.indexNo}</p>}
                         </li>
                     ))}
                 </ul>
+
+                <Footer />
             </div>
         </section>
     );

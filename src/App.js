@@ -6,8 +6,6 @@ function App() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [indexNumber, setIndexNumber] = useState('');
-    
-    const [search, setSearch] = useState('');
 
     const [list, setList] = useState([{
         name: 'Ashong',
@@ -38,16 +36,28 @@ function App() {
 
     }
     
-    const handleSearch = (e, item) => {
-        console.log('ji')
-        setSearch(e.target.value)
-        let myArrayRegex = /[0-9]/;
-        const listItems = list.filter(item => search.includes(list));
-        setList(listItems)
+    const [search, setSearch] = useState('');
 
-        // const listItems = list.filter(item => ((item.item).toLowerCase()).includes(search.toLowerCase()))
-        // setList(listItems);
+    const handleSearch = (e) => {
+        const searchText = e.target.value;
+        setSearch(searchText);
+    
+        // If the search text is empty, revert to the original list
+        if (searchText === '') {
+            const storedList = JSON.parse(localStorage.getItem('list')) || [];
+            setList(storedList);
+        } else {
+            // Filter the original list based on the search input
+            const filteredList = list.filter(item => item.name.toLowerCase().includes(searchText.toLowerCase()));
+            
+            // Update the list state with the filtered items
+            setList(filteredList);
+        }
+        console.log(list)
     }
+    
+    
+    
 
     return (
         <main className="App">
@@ -70,7 +80,7 @@ function App() {
                 search={search}
                 setSearch={setSearch}
                 handleSearch={handleSearch}
-            />
+            />  
         </main>
   );
 }

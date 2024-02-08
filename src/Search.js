@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 
 const Search = ({ search, setSearch, handleSearch }) => {
+    // const onChange = () => {
+    //     (e) => {setSearch(e.target.value)}
+    // }
     return (
         <section>
             <input 
@@ -9,9 +12,10 @@ const Search = ({ search, setSearch, handleSearch }) => {
                 className='search'
                 value={search}
                 onChange={handleSearch}
-            />   
+            />
+
         </section>
     )
 }
 
-export default Search
+export default Search;

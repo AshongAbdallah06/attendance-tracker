@@ -91,3 +91,9 @@ button {
     background-color: steelblue;
     border-radius: 3px;
 }
+
+.date {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+}
