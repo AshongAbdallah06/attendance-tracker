@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "./Form";
 import List from "./List";
 
@@ -42,6 +42,8 @@ function App() {
         const searchText = e.target.value;
         setSearch(searchText);
     
+
+    
         // If the search text is empty, revert to the original list
         if (searchText === '') {
             const storedList = JSON.parse(localStorage.getItem('list')) || [];
@@ -53,8 +55,12 @@ function App() {
             // Update the list state with the filtered items
             setList(filteredList);
         }
-        console.log(list)
     }
+
+    useEffect(() => {
+        console.log(list);
+    }, [list]);
+    
     
     
     
